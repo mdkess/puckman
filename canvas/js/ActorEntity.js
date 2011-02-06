@@ -1,16 +1,17 @@
 /** An ActorEntity are the characters that are animated **/
 
-function ActorEntity(name, image) {
+function ActorEntity(id, x, y) {
   this.name = name;
   this.image = new Image();
-  this.image.src = image;
+  this.image.src = 'gfx/ghost.png';
   this.dir = DOWN;          //Which direction the entity is facing
   this.frame = 0;           //Which frame in the current animation we're on
   this.numFrames = 3;       //How many frames in each animation
   this.frameTime = 0;       //How long on the current frame
   this.frameDuration = 200; //How long each frame should last
-  this.x = 0;
-  this.y = 0;
+  this.id = id;
+  this.x = x;
+  this.y = y;
 
   /** EXPORT METHODS **/
   this.update = update;
