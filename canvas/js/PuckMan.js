@@ -39,7 +39,7 @@ function loadContest2() {
 function draw() {
   var canvas = document.getElementById("canvas");
   var context = canvas.getContext("2d");
-  context.clearRect(0,0,800,600);
+  context.clearRect(0,0,canvas.width, canvas.height);
   if(level) {
     level.update(FRAMETIME);
     level.draw(context);

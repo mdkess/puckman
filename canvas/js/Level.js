@@ -43,12 +43,22 @@ function Level(level) {
           type = 2;
         } else if(this.map[i] == ' ') {
           type = 2;
+        } else if(this.map[i] == 'o') {
+          type = 2;
         } else {
           type = 3;
         }
         context.drawImage(this.image,
           1 + 33 * type, 1, 32, 32,
           32*c, 32*r, 32, 32);
+      }
+    }
+    //Draw the items
+    if(this.items) {
+      for(var i=0; i<this.items.length; ++i) {
+        context.drawImage(this.items.image,
+          32 * this.items[i].type, 0, 32, 32,
+          32 * this.items[i].x, 32 * this.items[i].y, 32, 32);
       }
     }
     if(this.players) {
@@ -100,6 +110,13 @@ function Level(level) {
     this.map = '';
     for(var r=0; r<this.height; ++r) {
       this.map += lines[n];
+      for(var c=0; c<this.width; ++c) {
+        if(lines[n][c] == '.') {
+          this.items.push(new Item(0, c, r));
+        } else if(lines[n][c] == 'o') {
+          this.items.push(new Item(1, c, r));
+        }
+      }
       ++n;
     }
   }
