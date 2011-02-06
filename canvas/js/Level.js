@@ -9,6 +9,7 @@ function Level(level) {
 
   this.players = [];
   this.ghosts = [];
+  this.map;
 
   /** INITIALIZE **/
 
@@ -31,6 +32,25 @@ function Level(level) {
   }
 
   function draw(context) {
+    //Draw the map
+    for(var r=0; r<this.height;++r) {
+      for(var c=0; c<this.width; ++c) {
+        var i = r * this.width + c;
+        var type = 0;
+        if(this.map[i] == '+') {
+          type = 1;
+        } else if(this.map[i] == '.') {
+          type = 2;
+        } else if(this.map[i] == ' ') {
+          type = 2;
+        } else {
+          type = 3;
+        }
+        context.drawImage(this.image,
+          1 + 33 * type, 1, 32, 32,
+          32*c, 32*r, 32, 32);
+      }
+    }
     if(this.players) {
       for(var i=0;i<this.players.length; ++i) {
         this.players[i].draw(context);
@@ -77,10 +97,10 @@ function Level(level) {
     }
     ++n;
     //Load the board
+    this.map = '';
     for(var r=0; r<this.height; ++r) {
-      for(var c=0; c<this.width; ++c) {
-
-      }
+      this.map += lines[n];
+      ++n;
     }
   }
 }
